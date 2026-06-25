@@ -30,7 +30,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
-    },
+    }, 
     // Add a timeout fallback so it fails faster if there's a network issue
     connectionTimeout: 10000, 
     greetingTimeout: 10000
