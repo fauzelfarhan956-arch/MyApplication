@@ -24,11 +24,16 @@ app.use(express.static(__dirname));
 // 3. For Google Workspace, ensure SMTP access is allowed for the mailbox
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
-    }
+    },
+    // Add a timeout fallback so it fails faster if there's a network issue
+    connectionTimeout: 10000, 
+    greetingTimeout: 10000
 });
 
 let emailStatus = {
